@@ -4,9 +4,10 @@ Appointments for citizenship tests (Einbürgerungstest) in Hamburg are hard to g
 because many people want to become citizens under the new legislation and the limited
 number of appointments for tests.
 
-Most appointments in Hamburg are available at the website of the VHS (Volkshochschule)
-Hamburg, but they offer no reminder service that would notify you when new appointments
-are available.
+Most appointments in Hamburg are available at the
+[website of the VHS (Volkshochschule) Hamburg](https://www.vhs-hamburg.de/deutsch/einbuergerungstest-1058?o=date_asc),
+but they offer no reminder service that would notify you when new appointments are
+available.
 
 To overcome the problem of sitting in front of the screen 24/7 and constantly hitting F5
 on the keyboard to refresh the page, here is a little script that you can run on your PC
@@ -26,7 +27,7 @@ Follow the instructions to set everything up.
    [MacOS](https://support.apple.com/guide/terminal/open-new-terminal-windows-and-tabs-trmlb20c7888/mac#:~:text=On%20your%20Mac%2C%20open%20a,window%3A%20Choose%20Open%20in%20Terminal.),
    [Linux](https://www.youtube.com/watch?v=dHjWNcYT9vo))
 
-2. Start the finder by executing the following commands in the terminal.
+1. Start the finder by executing the following commands in the terminal.
 
    ```console
    rye sync --all-features
