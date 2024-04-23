@@ -3,6 +3,7 @@
 import sys
 import time
 import webbrowser
+from importlib.resources import files
 
 import httpx
 from bs4 import BeautifulSoup
@@ -17,6 +18,10 @@ def main() -> int:
         if is_available:
             print("Appointments are available! Opening the website...")  # noqa: T201
             webbrowser.open(_URL)
+            if sys.platform == "win32":
+                import winsound
+
+                winsound.PlaySound(files("finder") / "alert.wav", 0)
             print("Exiting...")  # noqa: T201
             sys.exit(0)
         else:
