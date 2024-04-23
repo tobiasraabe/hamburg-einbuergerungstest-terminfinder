@@ -16,16 +16,21 @@ Follow the instructions to set everything up.
 
 ## Installation
 
-1. Install rye. Choose the suitable installer for your OS from https://rye-up.com/.
+1. Install rye. Choose a suitable installer for your OS from https://rye-up.com/ and
+   install the tool.
 
-1. Download this repository.
+1. Download this repository and unzip it. ([Instructions](https://sites.northwestern.edu/researchcomputing/resources/downloading-from-github/))
 
-1. Open a terminal in this folder.
+1. Open a terminal in the unzipped folder so you can see the folder `src` and `tests`.
+   (Instructions: [Windows](https://johnwargo.com/posts/2024/launch-windows-terminal/),
+   [MacOS](https://support.apple.com/guide/terminal/open-new-terminal-windows-and-tabs-trmlb20c7888/mac#:~:text=On%20your%20Mac%2C%20open%20a,window%3A%20Choose%20Open%20in%20Terminal.),
+   [Linux](https://www.youtube.com/watch?v=dHjWNcYT9vo))
 
-1. Start the finder by executing the following command in the terminal.
+2. Start the finder by executing the following commands in the terminal.
 
    ```console
-   finder
+   rye sync --all-features
+   rye run finder
    ```
 
 The finder will check every five minutes if new appointments are available. If
