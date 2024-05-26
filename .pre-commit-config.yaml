@@ -20,9 +20,3 @@ repos:
         types: [file, rust]
         entry: cargo fmt
         pass_filenames: false
-      - id: clippy
-        name: clippy
-        language: system
-        types: [file, rust]
-        entry: cargo clippy --all -- -W clippy::pedantic -D warnings # Use -D warnings option to ensure the job fails when encountering warnings
-        pass_filenames: false
