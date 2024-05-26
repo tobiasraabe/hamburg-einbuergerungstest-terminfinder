@@ -24,14 +24,10 @@ jobs:
         with:
           toolchain: stable
       - uses: Swatinem/rust-cache@v2
-      - name: Install cargo insta
-        uses: taiki-e/install-action@v2
-        with:
-          tool: cargo-insta
       - name: Check
-        run: make check
+        run: cargo check
       - name: Test
-        run: make test
+        run: cargo test
 
   test-latest-macos:
     name: Test (macOS)
@@ -43,14 +39,10 @@ jobs:
         with:
           toolchain: stable
       - uses: Swatinem/rust-cache@v2
-      - name: Install cargo insta
-        uses: taiki-e/install-action@v2
-        with:
-          tool: cargo-insta
       - name: Check
-        run: make check
+        run: cargo check
       - name: Test
-        run: make test
+        run: cargo test
 
   test-latest-windows:
     name: Test (Windows)
@@ -62,11 +54,7 @@ jobs:
         with:
           toolchain: stable
       - uses: Swatinem/rust-cache@v2
-      - name: Install cargo insta
-        uses: taiki-e/install-action@v2
-        with:
-          tool: cargo-insta
       - name: Check
-        run: make check
+        run: cargo check
       - name: Test
-        run: make test
+        run: cargo test
