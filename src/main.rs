@@ -1,5 +1,4 @@
 use indicatif::ProgressBar;
-use reqwest;
 use scraper::{Html, Selector};
 use std::process;
 use std::thread;
@@ -18,7 +17,7 @@ fn main() {
     pb.set_message("Fetching appointments...");
 
     loop {
-        let appointments = match get_appointments(&url) {
+        let appointments = match get_appointments(url) {
             Ok(appointments) => appointments,
             Err(e) => {
                 eprintln!("Error finding appointments: {}", e);
@@ -34,7 +33,7 @@ fn main() {
                     "Found {} appointments. Some are available! Opening the website...",
                     appointments.len()
                 ));
-                webbrowser::open(&url).unwrap();
+                webbrowser::open(url).unwrap();
                 println!("Exiting...");
                 process::exit(0);
             }
@@ -65,7 +64,7 @@ fn get_appointments(url: &str) -> Result<Vec<Appointment>, Box<dyn std::error::E
         .select(&selector)
         .map(|node| {
             let is_full = node.text().collect::<String>().contains("voll");
-            Appointment { is_full: is_full }
+            Appointment { is_full }
         })
         .collect::<Vec<_>>();
     Ok(appointments)
@@ -84,7 +83,7 @@ mod tests {
             .with_body("<div class='course-meta__status-content'>voll</div>")
             .create();
         let appointments = get_appointments(&server.url());
-        assert_eq!(appointments.unwrap()[0].is_full, true);
+        assert!(appointments.unwrap()[0].is_full);
     }
 
     #[test]
@@ -96,6 +95,6 @@ mod tests {
             .with_body("<div class='course-meta__status-content'>verfügbar</div>")
             .create();
         let appointments = get_appointments(&server.url());
-        assert_eq!(appointments.unwrap()[0].is_full, false);
+        assert!(!appointments.unwrap()[0].is_full);
     }
 }
