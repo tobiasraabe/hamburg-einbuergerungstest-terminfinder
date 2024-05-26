@@ -17,29 +17,22 @@ Follow the instructions to set everything up.
 
 ## Installation
 
+> [!WARNING]
+>
+> The executable does not work properly on every system. Windows seems to work, Linux
+> and MacOS probably not. I am working on it.
+
 1. Go to the
    [release page](https://github.com/tobiasraabe/hamburg-einbuergerungstest-terminfinder/releases)
    and select the latest release.
-
-2. Download this repository and unzip it. ([Instructions](https://sites.northwestern.edu/researchcomputing/resources/downloading-from-github/))
-
-3. Open a terminal in the unzipped folder so you can see the folder `src` and `tests`.
-   (Instructions: [Windows](https://johnwargo.com/posts/2024/launch-windows-terminal/),
-   [MacOS](https://support.apple.com/guide/terminal/open-new-terminal-windows-and-tabs-trmlb20c7888/mac#:~:text=On%20your%20Mac%2C%20open%20a,window%3A%20Choose%20Open%20in%20Terminal.),
-   [Linux](https://www.youtube.com/watch?v=dHjWNcYT9vo))
-
-4. Start the finder by executing the following commands in the terminal.
-
-   ```console
-   rye sync --all-features
-   rye run finder
-   ```
+2. Download the correct binary for your OS.
+3. Run the binary.
 
 The finder will check every five minutes if new appointments are available. If
 appointments are available, it will open the webpage of VHS for the appointments.
 Quickly book an appointment!
 
 After the appointment is booked, close the terminal by clicking on the X button or press
-Ctrl+C or Cmd+C. Then, delete the folder and uninstall rye.
+Ctrl+C or Cmd+C.
 
 Good luck with your citizenship test!
