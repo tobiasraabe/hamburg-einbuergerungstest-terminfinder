@@ -44,7 +44,8 @@ fn main() {
                     pb.set_message(format!(
                         "Found {} appointments. None are available. Retrying in {}m{}s.",
                         appointments.len(),
-                        minutes, seconds
+                        minutes,
+                        seconds
                     ));
                     thread::sleep(Duration::from_secs(1));
                 }
