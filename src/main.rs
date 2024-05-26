@@ -20,35 +20,32 @@ fn main() {
         let appointments = match get_appointments(url) {
             Ok(appointments) => appointments,
             Err(e) => {
-                eprintln!("Error finding appointments: {}", e);
+                eprintln!("Error finding appointments: {e}");
                 process::exit(1);
             }
         };
 
         let appointment_available = appointments.iter().any(|app| !app.is_full);
 
-        match appointment_available {
-            true => {
-                pb.finish_with_message(format!(
-                    "Found {} appointments. Some are available! Opening the website...",
-                    appointments.len()
+        if appointment_available {
+            pb.finish_with_message(format!(
+                "Found {} appointments. Some are available! Opening the website...",
+                appointments.len()
+            ));
+            webbrowser::open(url).unwrap();
+            println!("Exiting...");
+            process::exit(0);
+        } else {
+            for i in (1..=300).rev() {
+                let minutes = i / 60;
+                let seconds = i % 60;
+                pb.set_message(format!(
+                    "Found {} appointments. None are available. Retrying in {}m{}s.",
+                    appointments.len(),
+                    minutes,
+                    seconds
                 ));
-                webbrowser::open(url).unwrap();
-                println!("Exiting...");
-                process::exit(0);
-            }
-            false => {
-                for i in (1..=300).rev() {
-                    let minutes = i / 60;
-                    let seconds = i % 60;
-                    pb.set_message(format!(
-                        "Found {} appointments. None are available. Retrying in {}m{}s.",
-                        appointments.len(),
-                        minutes,
-                        seconds
-                    ));
-                    thread::sleep(Duration::from_secs(1));
-                }
+                thread::sleep(Duration::from_secs(1));
             }
         }
     }
