@@ -17,17 +17,18 @@ Follow the instructions to set everything up.
 
 ## Installation
 
-1. Install rye. Choose a suitable installer for your OS from https://rye-up.com/ and
-   install the tool.
+1. Go to the
+   [release page](https://github.com/tobiasraabe/hamburg-einbuergerungstest-terminfinder/releases)
+   and select the latest release.
 
-1. Download this repository and unzip it. ([Instructions](https://sites.northwestern.edu/researchcomputing/resources/downloading-from-github/))
+2. Download this repository and unzip it. ([Instructions](https://sites.northwestern.edu/researchcomputing/resources/downloading-from-github/))
 
-1. Open a terminal in the unzipped folder so you can see the folder `src` and `tests`.
+3. Open a terminal in the unzipped folder so you can see the folder `src` and `tests`.
    (Instructions: [Windows](https://johnwargo.com/posts/2024/launch-windows-terminal/),
    [MacOS](https://support.apple.com/guide/terminal/open-new-terminal-windows-and-tabs-trmlb20c7888/mac#:~:text=On%20your%20Mac%2C%20open%20a,window%3A%20Choose%20Open%20in%20Terminal.),
    [Linux](https://www.youtube.com/watch?v=dHjWNcYT9vo))
 
-1. Start the finder by executing the following commands in the terminal.
+4. Start the finder by executing the following commands in the terminal.
 
    ```console
    rye sync --all-features
