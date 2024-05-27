@@ -1,6 +1,6 @@
 [package]
 name = "finder"
-version = "0.0.1"
+version = "0.0.2+dev0"
 edition = "2021"
 authors = ["Tobias Raabe <raabe@posteo.com>"]
 license = "MIT"
