@@ -1,3 +1,4 @@
+use clap::Parser;
 use indicatif::ProgressBar;
 use scraper::{Html, Selector};
 use std::process;
@@ -8,7 +9,13 @@ struct Appointment {
     is_full: bool,
 }
 
+#[derive(Parser, Debug)]
+#[command(version, about, long_about = None)]
+struct Cli {}
+
 fn main() {
+    let _args = Cli::parse();
+
     let url = "https://www.vhs-hamburg.de/deutsch/einbuergerungstest-1058";
 
     // Create a spinner for waiting.
