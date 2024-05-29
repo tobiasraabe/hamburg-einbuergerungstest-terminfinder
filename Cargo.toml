@@ -23,3 +23,6 @@ mockito = "1.4.0"
 # For linux and macos, we need the vendored ssl
 [target.'cfg(target_os = "linux")'.dependencies]
 openssl = { version = "0.10.64", features = ["vendored"] }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+openssl = { version = "0.10.64", features = ["vendored"] }
