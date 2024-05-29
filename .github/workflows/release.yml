@@ -20,10 +20,10 @@ on:
 jobs:
   create-release:
     runs-on: ubuntu-latest
-    if: ${{ (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.dry-run == 'false') }}
     steps:
       - uses: actions/checkout@v3
       - uses: taiki-e/create-gh-release-action@v1
+        if: ${{ (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.dry-run == 'false') }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
