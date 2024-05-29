@@ -17,16 +17,13 @@ on:
           - "yes"
         required: true
 
-env:
-  RELEASING: ${{ (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.dry-run == 'false') }}
-
 jobs:
   create-release:
     runs-on: ubuntu-latest
+    if: ${{ (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.dry-run == 'false') }}
     steps:
       - uses: actions/checkout@v3
       - uses: taiki-e/create-gh-release-action@v1
-        if: env.RELEASING
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -54,4 +51,4 @@ jobs:
           bin: finder
           target: ${{ matrix.target }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          dry-run: ${{ !env.RELEASING }}
+          dry-run: ${{ (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.dry-run == 'false') }}
