@@ -51,4 +51,4 @@ jobs:
           bin: finder
           target: ${{ matrix.target }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          dry-run: ${{ (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.dry-run == 'false') }}
+          dry-run: ${{ !((github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.dry-run == 'false')) }}
