@@ -7,6 +7,18 @@ on:
   push:
     tags:
       - "**[0-9]+.[0-9]+.[0-9]+*"
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        type: choice
+        description: "Dry Run"
+        options:
+          - "no"
+          - "yes"
+        required: true
+
+env:
+  RELEASING: ${{ (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.dry-run == 'false') }}
 
 jobs:
   create-release:
@@ -14,6 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: taiki-e/create-gh-release-action@v1
+        if: env.RELEASING
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -23,8 +36,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - target: i686-unknown-linux-musl
-            os: ubuntu-latest
           - target: x86_64-unknown-linux-musl
             os: ubuntu-latest
           - target: x86_64-unknown-linux-musl
@@ -35,8 +46,6 @@ jobs:
             os: macos-latest
           - target: x86_64-pc-windows-msvc
             os: windows-latest
-          - target: i686-pc-windows-msvc
-            os: windows-latest
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -45,3 +54,4 @@ jobs:
           bin: finder
           target: ${{ matrix.target }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          dry-run: ${{ !env.RELEASING }}
