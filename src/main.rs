@@ -1,4 +1,4 @@
-use clap::Parser;
+use clap::{Parser, Subcommand};
 use indicatif::ProgressBar;
 use scraper::{Html, Selector};
 use std::process;
@@ -9,13 +9,28 @@ struct Appointment {
     is_full: bool,
 }
 
-#[derive(Parser, Debug)]
+#[derive(Parser)]
 #[command(version, about, long_about = None)]
-struct Cli {}
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
+}
+
+#[derive(Subcommand)]
+enum Commands {
+    /// Search for appointments.
+    Search,
+}
 
 fn main() {
-    let _args = Cli::parse();
+    let cli = Cli::parse();
 
+    match &cli.command {
+        Commands::Search => search(),
+    }
+}
+
+fn search() {
     let url = "https://www.vhs-hamburg.de/deutsch/einbuergerungstest-1058";
 
     // Create a spinner for waiting.
