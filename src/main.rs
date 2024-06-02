@@ -20,6 +20,7 @@ fn main() {
 
     match &cli.command {
         Some(Commands::Search { name: _ }) => search::search(),
+        #[allow(clippy::match_same_arms)]
         None => search::search(),
     }
 }
