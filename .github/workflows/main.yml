@@ -14,39 +14,13 @@ on:
       - "*"
 
 jobs:
-  test-latest-linux:
-    name: Test (Linux)
-    runs-on: ubuntu-latest
+  test:
+    name: Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
 
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@master
-        with:
-          toolchain: stable
-      - uses: Swatinem/rust-cache@v2
-      - name: Check
-        run: cargo check
-      - name: Test
-        run: cargo test
-
-  test-latest-macos:
-    name: Test (macOS)
-    runs-on: macos-latest
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@master
-        with:
-          toolchain: stable
-      - uses: Swatinem/rust-cache@v2
-      - name: Check
-        run: cargo check
-      - name: Test
-        run: cargo test
-
-  test-latest-windows:
-    name: Test (Windows)
-    runs-on: windows-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
       - uses: actions/checkout@v4

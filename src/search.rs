@@ -32,7 +32,10 @@ pub fn search() {
                 "Found {} appointments. Some are available! Opening the website...",
                 appointments.len()
             ));
-            webbrowser::open(url).unwrap();
+
+            if webbrowser::open(url).is_err() {
+                println!("Failed to open website. Please open {url} manually.");
+            }
             println!("Exiting...");
             process::exit(0);
         } else {
