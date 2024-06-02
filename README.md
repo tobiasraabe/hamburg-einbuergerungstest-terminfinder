@@ -64,8 +64,6 @@ Good luck with your citizenship test!
 
 ## Windows
 
-pre-
-
 ### Installation
 
 Open a terminal in a folder of your choice which is explained
