@@ -15,3 +15,5 @@ Cargo.lock
 
 # Custom
 *.html
+
+node_modules
