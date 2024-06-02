@@ -17,13 +17,11 @@ How does it work? The program runs in the background and frequently checks the V
 webpage. As soon as appointments are available it will open the VHS webpage in your
 browser thereby interrupting whatever you are doing.
 
-Follow the instructions to set everything up.
-
-## Installation
-
 Follow the instructions for your operating system.
 
-### Linux / macOS
+## Linux / macOS
+
+### Installation
 
 Open a terminal
 ([macOS](https://support.apple.com/de-de/guide/terminal/trmlb20c7888/mac),
@@ -41,7 +39,34 @@ Finally, start the application by running
 finder
 ```
 
-### Windows
+### Usage
+
+Open the terminal in the folder where you installed the application. Then, run
+
+```console
+finder
+```
+
+When you do not need the program anymore, delete it with
+
+```console
+rm finder
+```
+
+The finder will check every five minutes if new appointments are available. If
+appointments are available, it will open the webpage of VHS for the appointments.
+Quickly book an appointment!
+
+After the appointment is booked, close the terminal by clicking on the X button or pressing
+Ctrl+C or Cmd+C.
+
+Good luck with your citizenship test!
+
+## Windows
+
+pre-
+
+### Installation
 
 Open a terminal in a folder of your choice which is explained
 [here](https://johnwargo.com/posts/2024/launch-windows-terminal/).
@@ -52,15 +77,11 @@ Then, install the latest release on your computer by running the following comma
 iwr -useb hhttps://raw.githubusercontent.com/tobiasraabe/hamburg-einbuergerungstest-terminfinder/main/install/install.ps1 | iex
 ```
 
-## Usage
+### Usage
 
-Finally, start the application by running
+Open the terminal in the folder where you installed the application. Then, run
 
 ```console
-# Linux & macOS
-finder
-
-# Windows
 finder.exe
 ```
 
@@ -68,7 +89,7 @@ The finder will check every five minutes if new appointments are available. If
 appointments are available, it will open the webpage of VHS for the appointments.
 Quickly book an appointment!
 
-After the appointment is booked, close the terminal by clicking on the X button or press
-Ctrl+C or Cmd+C.
+After the appointment is booked, close the terminal by clicking on the X button or pressing
+Ctrl+C.
 
 Good luck with your citizenship test!
