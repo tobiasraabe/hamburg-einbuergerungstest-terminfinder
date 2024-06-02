@@ -33,12 +33,6 @@ Then, install the latest release on your computer by running the following comma
 curl -fsSL https://raw.githubusercontent.com/tobiasraabe/hamburg-einbuergerungstest-terminfinder/main/install/install.sh | bash
 ```
 
-Finally, start the application by running
-
-```console
-finder
-```
-
 ### Usage
 
 Open the terminal in the folder where you installed the application. Then, run
