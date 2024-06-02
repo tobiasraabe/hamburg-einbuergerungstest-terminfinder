@@ -1,6 +1,6 @@
 [package]
 name = "finder"
-version = "0.0.2+dev0"
+version = "0.0.3"
 edition = "2021"
 authors = ["Tobias Raabe <raabe@posteo.com>"]
 license = "MIT"
@@ -8,10 +8,9 @@ description = "A tool to fetch appointments for Hamburg's Citizenship Test."
 readme = "README.md"
 homepage = "https://github.com/tobiasraabe/hamburg-einbuergerungstest-terminfinder"
 repository = "https://github.com/tobiasraabe/hamburg-einbuergerungstest-terminfinder"
-keywords = ["cli"]
-categories = ["command-line-utilities"]
 
 [dependencies]
+clap = { version = "4.5.4", features = ["derive"] }
 indicatif = "0.17.8"
 reqwest = { version = "0.12.4", features = ["blocking"] }
 scraper = "0.19.0"
