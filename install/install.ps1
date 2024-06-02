@@ -9,7 +9,7 @@
     environment variable 'PIXI_VERSION'.
 .PARAMETER FinderHome
     Specifies Finder's home directory.
-    The default value is '$Env:USERPROFILE\.finder'. You can also specify it by
+    The default value is $PWD'. You can also specify it by
     setting the environment variable 'FINDER_HOME'.
 .PARAMETER NoPathUpdate
     If specified, the script will not update the PATH environment variable.
@@ -20,7 +20,7 @@
 #>
 param (
     [string] $FinderVersion = 'latest',
-    [string] $FinderHome = "$Env:USERPROFILE\.finder",
+    [string] $FinderHome = "$PWD",
     [switch] $NoPathUpdate
 )
 
@@ -48,52 +48,6 @@ public static extern IntPtr SendMessageTimeout(
         5000,
         [ref] $result
     ) | Out-Null
-}
-
-function Write-Env {
-    param(
-        [String] $name,
-        [String] $val,
-        [Switch] $global
-    )
-
-    $RegisterKey = if ($global) {
-        Get-Item -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager'
-    } else {
-        Get-Item -Path 'HKCU:'
-    }
-
-    $EnvRegisterKey = $RegisterKey.OpenSubKey('Environment', $true)
-    if ($null -eq $val) {
-        $EnvRegisterKey.DeleteValue($name)
-    } else {
-        $RegistryValueKind = if ($val.Contains('%')) {
-            [Microsoft.Win32.RegistryValueKind]::ExpandString
-        } elseif ($EnvRegisterKey.GetValue($name)) {
-            $EnvRegisterKey.GetValueKind($name)
-        } else {
-            [Microsoft.Win32.RegistryValueKind]::String
-        }
-        $EnvRegisterKey.SetValue($name, $val, $RegistryValueKind)
-    }
-    Publish-Env
-}
-
-function Get-Env {
-    param(
-        [String] $name,
-        [Switch] $global
-    )
-
-    $RegisterKey = if ($global) {
-        Get-Item -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager'
-    } else {
-        Get-Item -Path 'HKCU:'
-    }
-
-    $EnvRegisterKey = $RegisterKey.OpenSubKey('Environment')
-    $RegistryValueOption = [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames
-    $EnvRegisterKey.GetValue($name, $null, $RegistryValueOption)
 }
 
 if ($Env:PIXI_VERSION) {
@@ -147,21 +101,4 @@ try {
     exit 1
 } finally {
     Remove-Item -Path $ZIP_FILE
-}
-
-# Add finder to PATH if the folder is not already in the PATH variable
-if (!$NoPathUpdate) {
-    $PATH = Get-Env 'PATH'
-    if ($PATH -notlike "*$BinDir*") {
-        Write-Output "Adding $BinDir to PATH"
-        # For future sessions
-        Write-Env -name 'PATH' -val "$BinDir;$PATH"
-        # For current session
-        $Env:PATH = "$BinDir;$PATH"
-        Write-Output "You may need to restart your shell"
-    } else {
-        Write-Output "$BinDir is already in PATH"
-    }
-} else {
-    Write-Output "You may need to update your PATH manually to use finder"
 }

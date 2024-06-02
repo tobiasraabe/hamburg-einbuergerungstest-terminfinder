@@ -5,8 +5,8 @@ set -euo pipefail
 __wrap__() {
 
 VERSION=${FINDER_VERSION:-latest}
-FINDER_HOME=${FINDER_HOME:-"$HOME/.finder"}
-BIN_DIR="$FINDER_HOME/bin"
+FINDER_HOME=${FINDER_HOME:-"$PWD"}
+BIN_DIR="$FINDER_HOME"
 
 REPO=tobiasraabe/hamburg-einbuergerungstest-terminfinder
 PLATFORM=$(uname -s)
@@ -88,59 +88,5 @@ else
 fi
 
 echo "The 'finder' binary is installed into '${BIN_DIR}'"
-
-update_shell() {
-    FILE=$1
-    LINE=$2
-
-    # shell update can be suppressed by `FINDER_NO_PATH_UPDATE` env var
-    [[ ! -z "${FINDER_NO_PATH_UPDATE-}" ]] && echo "No path update because FINDER_NO_PATH_UPDATE has a value" && return
-
-    # Create the file if it doesn't exist
-    if [ -f "$FILE" ]; then
-        touch "$FILE"
-    fi
-
-    # Append the line if not already present
-    if ! grep -Fxq "$LINE" "$FILE"
-    then
-        echo "Updating '${FILE}'"
-        echo "$LINE" >> "$FILE"
-        echo "Please restart or source your shell."
-    fi
-}
-
-case "$(basename "$SHELL")" in
-    bash)
-        if [ -w ~/.bash_profile ]; then
-            BASH_FILE=~/.bash_profile
-        else
-            # Default to bashrc as that is used in non login shells instead of the profile.
-            BASH_FILE=~/.bashrc
-        fi
-        LINE="export PATH=\$PATH:${BIN_DIR}"
-        update_shell $BASH_FILE "$LINE"
-        ;;
-
-    fish)
-        LINE="fish_add_path ${BIN_DIR}"
-        update_shell ~/.config/fish/config.fish "$LINE"
-        ;;
-
-    zsh)
-        LINE="export PATH=\$PATH:${BIN_DIR}"
-        update_shell ~/.zshrc "$LINE"
-        ;;
-
-    tcsh)
-        LINE="set path = ( \$path ${BIN_DIR} )"
-        update_shell ~/.tcshrc "$LINE"
-        ;;
-
-    *)
-        echo "Could not update shell: $(basename "$SHELL")"
-        echo "Please permanently add '${BIN_DIR}' to your \$PATH to enable the 'finder' command."
-        ;;
-esac
 
 }; __wrap__
