@@ -17,7 +17,7 @@
 .LINK
     https://github.com/tobiasraabe/hamburg-einbuergerungstest-terminfinder
 .NOTES
-    Version: v0.0.3
+    Version: v0.0.4
 #>
 param (
     [string] $FinderVersion = 'latest',

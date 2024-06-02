@@ -4,7 +4,7 @@
 # https://github.com/prefix-dev/pixi/blob/main/install/install.sh.
 
 set -euo pipefail
-# Version: v0.0.3
+# Version: v0.0.4
 
 __wrap__() {
 

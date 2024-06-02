@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.0.4 - 2024-xx-xx
+## v0.0.4 - 2024-06-02
 
 - Use musl for Linux builds
   ([#8](https://github.com/tobiasraabe/hamburg-einbuergerungstest-terminfinder/pull/8)).
