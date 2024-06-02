@@ -12,6 +12,11 @@ repos:
     rev: v1.0.9
     hooks:
       - id: cargo-sort
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.17
+    hooks:
+      - id: mdformat
+        additional_dependencies: [mdformat-gfm]
   - repo: local
     hooks:
       - id: fmt
