@@ -6,19 +6,20 @@ pub mod search;
 #[command(version, about, long_about = None)]
 struct Cli {
     #[command(subcommand)]
-    command: Commands,
+    command: Option<Commands>,
 }
 
 #[derive(Subcommand)]
 enum Commands {
     /// Search for appointments.
-    Search,
+    Search { name: Option<String> },
 }
 
 fn main() {
     let cli = Cli::parse();
 
     match &cli.command {
-        Commands::Search => search::search(),
+        Some(Commands::Search { name: _ }) => search::search(),
+        None => search::search(),
     }
 }

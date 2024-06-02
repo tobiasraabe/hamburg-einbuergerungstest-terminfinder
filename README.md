@@ -17,11 +17,6 @@ Follow the instructions to set everything up.
 
 ## Installation
 
-> [!WARNING]
->
-> The executable does not work properly on every system. Windows seems to work, Linux
-> and MacOS probably not. I am working on it.
-
 1. Go to the
    [release page](https://github.com/tobiasraabe/hamburg-einbuergerungstest-terminfinder/releases)
    and select the latest release.
