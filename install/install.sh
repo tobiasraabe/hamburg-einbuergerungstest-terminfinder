@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
+
+# This script is an adapted version of
+# https://github.com/prefix-dev/pixi/blob/main/install/install.sh.
+
 set -euo pipefail
-# Version: v0.23.0
+# Version: v0.0.3
 
 __wrap__() {
 

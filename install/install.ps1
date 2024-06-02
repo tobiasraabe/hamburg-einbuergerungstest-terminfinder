@@ -3,14 +3,15 @@
     Finder install script.
 .DESCRIPTION
     This script is used to install Finder on Windows from the command line.
+
+    It is an adapted version of
+    https://github.com/prefix-dev/pixi/blob/main/install/install.ps1.
 .PARAMETER FinderVersion
-    Specifies the version of Finder to install.
-    The default value is 'latest'. You can also specify it by setting the
-    environment variable 'PIXI_VERSION'.
+    Specifies the version of Finder to install. The default value is 'latest'. You can
+    also specify it by setting the environment variable 'PIXI_VERSION'.
 .PARAMETER FinderHome
-    Specifies Finder's home directory.
-    The default value is $PWD'. You can also specify it by
-    setting the environment variable 'FINDER_HOME'.
+    Specifies Finder's home directory. The default value is $PWD'. You can also specify
+    it by setting the environment variable 'FINDER_HOME'.
 .PARAMETER NoPathUpdate
     If specified, the script will not update the PATH environment variable.
 .LINK
@@ -75,7 +76,7 @@ if ($FinderVersion -eq 'latest') {
     $DOWNLOAD_URL = "https://github.com/$REPO/releases/download/$FinderVersion/$BINARY.zip"
 }
 
-$BinDir = Join-Path $FinderHome 'bin'
+$BinDir = Join-Path $FinderHome ''
 
 Write-Host "This script will automatically download and install Finder ($FinderVersion) for you."
 Write-Host "Getting it from this url: $DOWNLOAD_URL"
