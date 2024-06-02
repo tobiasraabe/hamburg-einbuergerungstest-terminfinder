@@ -16,6 +16,7 @@ on:
           - "no"
           - "yes"
         required: true
+        default: "yes"
 
 jobs:
   create-release:
