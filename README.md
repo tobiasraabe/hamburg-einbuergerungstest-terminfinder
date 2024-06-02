@@ -41,12 +41,6 @@ Open the terminal in the folder where you installed the application. Then, run
 finder
 ```
 
-When you do not need the program anymore, delete it with
-
-```console
-rm finder
-```
-
 The finder will check every five minutes if new appointments are available. If
 appointments are available, it will open the webpage of VHS for the appointments.
 Quickly book an appointment!
@@ -55,6 +49,14 @@ After the appointment is booked, close the terminal by clicking on the X button 
 Ctrl+C or Cmd+C.
 
 Good luck with your citizenship test!
+
+### Deinstallation
+
+When you do not need the program anymore, delete it with
+
+```console
+rm finder
+```
 
 ## Windows
 
@@ -85,3 +87,11 @@ After the appointment is booked, close the terminal by clicking on the X button 
 Ctrl+C.
 
 Good luck with your citizenship test!
+
+### Deinstallation
+
+When you do not need the program anymore, delete it with
+
+```console
+rm finder.exe
+```
