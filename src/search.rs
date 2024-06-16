@@ -3,10 +3,12 @@ use reqwest::blocking::Client;
 use reqwest::Url;
 use scraper::{Html, Selector};
 use std::error::Error;
+use std::fs;
 use std::process;
 use std::thread;
 use std::time::Duration;
 
+#[derive(Debug)]
 struct Appointment {
     is_full: bool,
     course_id: String,
@@ -28,16 +30,28 @@ pub fn search() {
             Err(error) => panic!("Error parsing appointments: {error:?}"),
         };
 
-        let appointment_available = appointments.iter().any(|app| !app.is_full);
+        let available_courses: Vec<_> = appointments.iter().filter(|app| !app.is_full).collect();
+        let n_available_courses = available_courses.len();
 
-        if appointment_available {
-            pb.finish_with_message(format!(
-                "Found {} appointments. Some are available! Opening the website...",
+        println!("{:?}", appointments);
+
+        if n_available_courses > 0 {
+            pb.finish_and_clear();
+            println!(
+                "{n_available_courses} of {} courses are available! Opening the website...",
                 appointments.len()
-            ));
+            );
 
-            let url = "https://www.vhs-hamburg.de/deutsch/einbuergerungstest-1058";
-            if webbrowser::open(url).is_err() {
+            let url = if n_available_courses == 1 {
+                format!(
+                    "https://www.vhs-hamburg.de/kurs/einburgerungstest/{}",
+                    available_courses[0].course_id
+                )
+            } else {
+                "https://www.vhs-hamburg.de/deutsch/einbuergerungstest-1058".to_string()
+            };
+
+            if webbrowser::open(&url).is_err() {
                 println!("Failed to open website. Please open {url} manually.");
             }
             println!("Exiting...");
