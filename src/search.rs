@@ -3,7 +3,6 @@ use reqwest::blocking::Client;
 use reqwest::Url;
 use scraper::{Html, Selector};
 use std::error::Error;
-use std::fs;
 use std::process;
 use std::thread;
 use std::time::Duration;
@@ -14,8 +13,18 @@ struct Appointment {
     course_id: String,
 }
 
+/// Searches for available appointments and prints them.
+///
+/// This function fetches documents containing appointment information in a loop.
+/// It parses the appointments from the documents and filters out the full ones.
+/// The number of available courses is then printed.
+/// If there are available courses, the function finishes the progress bar,
+/// prints a message, and attempts to open the website.
+///
+/// # Panics
+///
+/// This function will panic if there is an error fetching or parsing the appointments.
 pub fn search() {
-    // Create a spinner for waiting.
     let pb = ProgressBar::new_spinner();
     pb.enable_steady_tick(Duration::from_millis(100));
     pb.set_message("Fetching appointments...");
@@ -25,15 +34,10 @@ pub fn search() {
             Ok(documents) => documents,
             Err(error) => panic!("Error fetching appointments: {error:?}"),
         };
-        let appointments = match parse_appointments(documents) {
-            Ok(appointments) => appointments,
-            Err(error) => panic!("Error parsing appointments: {error:?}"),
-        };
+        let appointments = parse_appointments(documents);
 
         let available_courses: Vec<_> = appointments.iter().filter(|app| !app.is_full).collect();
         let n_available_courses = available_courses.len();
-
-        println!("{:?}", appointments);
 
         if n_available_courses > 0 {
             pb.finish_and_clear();
@@ -97,7 +101,7 @@ fn get_documents() -> Result<Vec<String>, Box<dyn Error>> {
     Ok(documents)
 }
 
-fn parse_appointments(documents: Vec<String>) -> Result<Vec<Appointment>, Box<dyn Error>> {
+fn parse_appointments(documents: Vec<String>) -> Vec<Appointment> {
     let mut appointments = Vec::new();
 
     let course_card_selector = Selector::parse("article.course-card").unwrap();
@@ -122,5 +126,5 @@ fn parse_appointments(documents: Vec<String>) -> Result<Vec<Appointment>, Box<dy
         }
     }
 
-    Ok(appointments)
+    appointments
 }
