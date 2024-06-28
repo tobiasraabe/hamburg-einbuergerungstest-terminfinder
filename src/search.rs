@@ -104,9 +104,12 @@ fn get_documents() -> Result<Vec<String>, Box<dyn Error>> {
 fn parse_appointments(documents: Vec<String>) -> Vec<Appointment> {
     let mut appointments = Vec::new();
 
-    let course_card_selector = Selector::parse("article.course-card").unwrap();
-    let course_link_selector = Selector::parse(".course-card__title a").unwrap();
-    let course_status_selector = Selector::parse(".course-meta__status--danger span").unwrap();
+    let course_card_selector =
+        Selector::parse("article.course-card").expect("Hardcoded selector is fine.");
+    let course_link_selector =
+        Selector::parse(".course-card__title a").expect("Hardcoded selector is fine.");
+    let course_status_selector =
+        Selector::parse(".course-meta__status--danger span").expect("Hardcoded selector is fine.");
 
     for document in documents {
         let html_doc = Html::parse_document(&document);
