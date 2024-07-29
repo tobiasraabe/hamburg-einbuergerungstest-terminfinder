@@ -10,7 +10,7 @@ homepage = "https://github.com/tobiasraabe/hamburg-einbuergerungstest-terminfind
 repository = "https://github.com/tobiasraabe/hamburg-einbuergerungstest-terminfinder"
 
 [dependencies]
-clap = { version = "4.5.9", features = ["derive"] }
+clap = { version = "4.5.11", features = ["derive"] }
 indicatif = "0.17.8"
 reqwest = { version = "0.12.5", features = ["blocking"] }
 scraper = "0.19.1"
