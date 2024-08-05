@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/crate-ci/typos
-    rev: v1.22.9
+    rev: v1.23.6
     hooks:
       - id: typos
   - repo: https://github.com/pre-commit/mirrors-prettier
