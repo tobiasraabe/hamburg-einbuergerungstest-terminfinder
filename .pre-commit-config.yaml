@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/crate-ci/typos
-    rev: v1.22.9
+    rev: v1
     hooks:
       - id: typos
   - repo: https://github.com/pre-commit/mirrors-prettier
@@ -9,11 +9,11 @@ repos:
       - id: prettier
         types_or: [yaml]
   - repo: https://github.com/DevinR528/cargo-sort
-    rev: v1.0.9
+    rev: v1.1.0
     hooks:
       - id: cargo-sort
   - repo: https://github.com/executablebooks/mdformat
-    rev: 0.7.17
+    rev: 0.7.22
     hooks:
       - id: mdformat
         additional_dependencies: [mdformat-gfm]
