@@ -10,18 +10,18 @@ homepage = "https://github.com/tobiasraabe/hamburg-einbuergerungstest-terminfind
 repository = "https://github.com/tobiasraabe/hamburg-einbuergerungstest-terminfinder"
 
 [dependencies]
-clap = { version = "4.5.40", features = ["derive"] }
-indicatif = "0.17.11"
-reqwest = { version = "0.12.20", features = ["blocking"] }
-scraper = "0.23.1"
-webbrowser = "1.0.5"
+clap = { version = "4.5.49", features = ["derive"] }
+indicatif = "0.18.0"
+reqwest = { version = "0.12.24", features = ["blocking"] }
+scraper = "0.24.0"
+webbrowser = "1.0.6"
 
 [dev-dependencies]
 mockito = "1.7.0"
 
 # For linux and macos, we need the vendored ssl
 [target.'cfg(target_os = "linux")'.dependencies]
-openssl = { version = "0.10.73", features = ["vendored"] }
+openssl = { version = "0.10.74", features = ["vendored"] }
 
 [target.'cfg(target_os = "macos")'.dependencies]
-openssl = { version = "0.10.73", features = ["vendored"] }
+openssl = { version = "0.10.74", features = ["vendored"] }
