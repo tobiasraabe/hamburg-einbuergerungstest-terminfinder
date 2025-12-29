@@ -16,12 +16,12 @@ reqwest = { version = "0.12.24", features = ["blocking"] }
 scraper = "0.24.0"
 webbrowser = "1.0.6"
 
-[dev-dependencies]
-mockito = "1.7.1"
-
 # For linux and macos, we need the vendored ssl
 [target.'cfg(target_os = "linux")'.dependencies]
 openssl = { version = "0.10.75", features = ["vendored"] }
 
 [target.'cfg(target_os = "macos")'.dependencies]
 openssl = { version = "0.10.75", features = ["vendored"] }
+
+[dev-dependencies]
+mockito = "1.7.0"
