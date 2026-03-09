@@ -14,7 +14,7 @@ clap = { version = "4.5.60", features = ["derive"] }
 indicatif = "0.18.4"
 reqwest = { version = "0.12.26", features = ["blocking"] }
 scraper = "0.25.0"
-webbrowser = "1.1.0"
+webbrowser = "1.2.0"
 
 # For linux and macos, we need the vendored ssl
 [target.'cfg(target_os = "linux")'.dependencies]
