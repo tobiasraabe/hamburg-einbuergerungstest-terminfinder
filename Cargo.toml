@@ -10,11 +10,11 @@ homepage = "https://github.com/tobiasraabe/hamburg-einbuergerungstest-terminfind
 repository = "https://github.com/tobiasraabe/hamburg-einbuergerungstest-terminfinder"
 
 [dependencies]
-clap = { version = "4.6.0", features = ["derive"] }
+clap = { version = "4.6.1", features = ["derive"] }
 indicatif = "0.18.4"
 reqwest = { version = "0.12.26", features = ["blocking"] }
 scraper = "0.26.0"
-webbrowser = "1.2.0"
+webbrowser = "1.2.1"
 
 # For linux and macos, we need the vendored ssl
 [target.'cfg(target_os = "linux")'.dependencies]
